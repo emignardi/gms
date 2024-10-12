@@ -5,8 +5,3 @@ The Guitar Collection Management System is a robust CRUD application designed to
 ## Authors
 
 - [@emignardi](https://github.com/emignardi)
-
-
-## Acknowledgements
-
- - [JSP Servlet JDBC MySQL CRUD Example Tutorial | Java Guides](https://www.youtube.com/watch?v=RqiuxA_OFOk)
