@@ -9,9 +9,9 @@ import javax.crypto.SecretKey;
 public class JwtSecretGeneratorTest {
 
     @Test
-    void generateSecretKey() {
-        SecretKey secretKey = Jwts.SIG.HS512.key().build();
-        String encodedSecretKey = DatatypeConverter.printHexBinary(secretKey.getEncoded());
-        System.out.println(encodedSecretKey);
+    void generateSecret() {
+        SecretKey secret = Jwts.SIG.HS512.key().build();
+        String encodedSecret = DatatypeConverter.printHexBinary(secret.getEncoded());
+        System.out.println(encodedSecret);
     }
 }

@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "67796C5C086D85E024C072A81F383BB4F32D77689C6E0EA711FD8B10015428F58DA5D27A995D2BF7E84FE3A713ADBBBAB9CE0E0C91E5E6E90D771EBEA8E33A8D";
-    private static final long EXPIRY = TimeUnit.MINUTES.toMillis(30);
+    private static final String SECRET = "67796C5C086D85E024C072A81F383BB4F32D77689C6E0EA711FD8B10015428F58DA5D27A995D2BF7E84FE3A713ADBBBAB9CE0E0C91E5E6E90D771EBEA8E33A8D";
+    private static final long EXPIRATION = TimeUnit.MINUTES.toMillis(30);
 
     public String generateToken(UserDetails userDetails) {
         Map<String, String> claims = new HashMap<>();
@@ -27,13 +27,13 @@ public class JwtService {
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(Date.from(Instant.now()))
-                .expiration(Date.from(Instant.now().plusMillis(EXPIRY)))
-                .signWith(generateKey())
+                .expiration(Date.from(Instant.now().plusMillis(EXPIRATION)))
+                .signWith(generateSecret())
                 .compact();
     }
 
-    private SecretKey generateKey() {
-        byte[] decodedKey = Base64.getDecoder().decode(SECRET_KEY);
+    private SecretKey generateSecret() {
+        byte[] decodedKey = Base64.getDecoder().decode(SECRET);
         return Keys.hmacShaKeyFor(decodedKey);
     }
 
@@ -44,7 +44,7 @@ public class JwtService {
 
     private Claims getClaims(String jwt) {
         return Jwts.parser()
-                .verifyWith(generateKey())
+                .verifyWith(generateSecret())
                 .build()
                 .parseSignedClaims(jwt)
                 .getPayload();
