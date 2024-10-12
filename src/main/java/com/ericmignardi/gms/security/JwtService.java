@@ -17,23 +17,23 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class JwtService {
 
-    private static final String SECRET = "638CBE3A90E0303BF3808F40F95A7F02A24B4B5D029C954CF553F79E9EF1DC0384BE681C249F1223F6B55AA21DC070914834CA22C8DD98E14A872CA010091ACC";
-    private static final long VALIDITY = TimeUnit.MINUTES.toMillis(30);
+    private static final String SECRET_KEY = "67796C5C086D85E024C072A81F383BB4F32D77689C6E0EA711FD8B10015428F58DA5D27A995D2BF7E84FE3A713ADBBBAB9CE0E0C91E5E6E90D771EBEA8E33A8D";
+    private static final long EXPIRY = TimeUnit.MINUTES.toMillis(30);
 
     public String generateToken(UserDetails userDetails) {
         Map<String, String> claims = new HashMap<>();
-        claims.put("iss", "https://secure.genuinecoder.com");
+        claims.put("iss", "https://www.stratalog.com");
         return Jwts.builder()
                 .claims(claims)
                 .subject(userDetails.getUsername())
                 .issuedAt(Date.from(Instant.now()))
-                .expiration(Date.from(Instant.now().plusMillis(VALIDITY)))
+                .expiration(Date.from(Instant.now().plusMillis(EXPIRY)))
                 .signWith(generateKey())
                 .compact();
     }
 
     private SecretKey generateKey() {
-        byte[] decodedKey = Base64.getDecoder().decode(SECRET);
+        byte[] decodedKey = Base64.getDecoder().decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(decodedKey);
     }
 
