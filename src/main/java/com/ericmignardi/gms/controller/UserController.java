@@ -11,9 +11,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,5 +41,25 @@ public class UserController {
         } else {
             throw new UsernameNotFoundException("Invalid credentials");
         }
+    }
+
+    @GetMapping("/users/read/{id}")
+    public User readById(@PathVariable Long id) {
+        return userService.readById(id);
+    }
+
+    @GetMapping("/users/read")
+    public List<User> readAll() {
+        return userService.readAll();
+    }
+
+    @PutMapping("/users/update/{id}")
+    public User update(@PathVariable Long id, @RequestBody User user) {
+        return userService.update(id, user);
+    }
+
+    @DeleteMapping("/users/delete/{id}")
+    public User delete(@PathVariable Long id) {
+        return userService.delete(id);
     }
 }
