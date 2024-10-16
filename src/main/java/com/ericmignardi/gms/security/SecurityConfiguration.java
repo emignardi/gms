@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/register", "/authenticate").permitAll();
+                    auth.requestMatchers("/guitars/**").hasAnyRole("USER", "ADMIN");
                     auth.requestMatchers("/users/**").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
