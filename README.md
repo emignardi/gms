@@ -59,7 +59,5 @@ A Guitar Management System built with Java and Spring Framework that allows for 
 - [@emignardi](https://github.com/emignardi)
 
 ![screenshot](/images/index.png)
-![screenshot](/images/register.png)
-![screenshot](/images/login.png)
 ![screenshot](/images/create.png)
 ![screenshot](/images/update.png)
