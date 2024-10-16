@@ -23,6 +23,12 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(25) default 'USER'")
     private String role;
+    @PrePersist
+    public void prePersist() {
+        if (role == null) {
+            role = "USER";
+        }
+    }
 }
