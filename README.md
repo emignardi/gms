@@ -36,7 +36,7 @@ A Guitar Management System built with Java and Spring Framework that allows for 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/gms.git
+   git clone https://github.com/emignardi/gms.git
    cd gms
 
 2. **Create Database and Update application.properties Configuration:**
