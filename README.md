@@ -54,10 +54,6 @@ A Guitar Management System built with Java and Spring Framework that allows for 
    ```bash
    mvn spring-boot:run
 
-## Authors
-
-- [@emignardi](https://github.com/emignardi)
-
 ![screenshot](/images/index.png)
 ![screenshot](/images/create.png)
 ![screenshot](/images/update.png)
